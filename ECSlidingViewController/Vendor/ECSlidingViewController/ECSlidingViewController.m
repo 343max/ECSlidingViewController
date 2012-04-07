@@ -98,13 +98,15 @@ NSString *const ECSlidingViewTopDidReset          = @"ECSlidingViewTopDidReset";
   
   _topViewController = theTopViewController;
   
-  [self addChildViewController:self.topViewController];
-  [self.topViewController didMoveToParentViewController:self];
-  
-  [_topViewController.view setAutoresizingMask:self.autoResizeToFillScreen];
-  [_topViewController.view setFrame:self.view.bounds];
-  
-  [self.view addSubview:_topViewController.view];
+  if (_topViewController) {
+    [self addChildViewController:self.topViewController];
+    [self.topViewController didMoveToParentViewController:self];
+
+    [_topViewController.view setAutoresizingMask:self.autoResizeToFillScreen];
+    [_topViewController.view setFrame:self.view.bounds];
+
+    [self.view addSubview:_topViewController.view];
+  }
 }
 
 - (void)setUnderLeftViewController:(UIViewController *)theUnderLeftViewController
